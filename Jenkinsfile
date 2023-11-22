@@ -13,6 +13,15 @@ pipeline {
       }
     }
 
+    stage('unit-test') {
+      steps {
+        script {
+          docker.image("${registry}:${env.BUILD_UP}").inside{c -> sh 'python app_test'}
+        }
+
+      }
+    }
+
   }
   environment {
     registry = 'secop/my-app'
