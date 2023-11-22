@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     checkout scm
-                    def customImage = docker.build("${registry}:${env.BUILD_ID}")}
+                    def customImage = docker.build("${registry}:${env.BUILD_ID}")
                 }
             }
         }
@@ -20,14 +20,14 @@ pipeline {
         stage('http-test'){
             steps{
                 script{
-                    docker.image("${registry}:${env.BUILD_ID}")withRun('-p 9005:9000'){
+                    docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9005:9000'){
                         c-> sh "sleep 5; curl -i http://172.20.10.11:9005/test_string"
                     }
                 }
             }
         }
+        }
         environment {
             registry = 'secop/my-app'
         }
     }
-}
