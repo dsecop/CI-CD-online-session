@@ -16,7 +16,7 @@ pipeline {
     stage('unit-test') {
       steps {
         script {
-          docker.image("${registry}:${env.BUILD_UP}").inside{c -> sh 'python app_test'}
+          docker.image("${registry}:${env.BUILD_UP}").inside{c -> sh 'python app_test.py'}
         }
 
       }
