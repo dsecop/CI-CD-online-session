@@ -7,7 +7,7 @@ pipeline {
           checkout scm
 
 
-          def customImage = docker.buildx("${registry}:${env.BUILD_ID}")
+          def customImage = docker.build("${registry}:${env.BUILD_ID}")
         }
 
       }
