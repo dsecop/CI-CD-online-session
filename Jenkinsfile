@@ -30,3 +30,4 @@ pipeline {
             registry = 'secop/my-app'
         }
     }
+}
