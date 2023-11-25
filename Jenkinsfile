@@ -1,30 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Check code quality') {
-      steps {
-        script {
-          docker.image('python:3.9').inside {
-            c -> sh '''
-            python -m venv .venv
-            . .venv/bin/activate
-            pip install pylint
-            pip install -r requirements.txt
-            pylint --exit-zero --report=y --output-format=json:pylint-report.json,colorized ./*py
-            '''
-            publishHTML target : [
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: './',
-              reportFiles: 'pylint-report.json',
-              reportName: 'pylint Scan',
-              reportTitles: 'pylint AScan'
-            ]
-          }
-        }
-      }
-    }
     stage('Build') {
       steps {
         script {
