@@ -31,5 +31,6 @@ pipeline {
   }
   environment {
     registry = 'secop/my-app'
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub_token')
   }
 }
