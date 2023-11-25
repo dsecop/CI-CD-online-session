@@ -9,12 +9,20 @@ pipeline {
         }
       }
     }
-    stage('Publish') {
+    // stage('Publish') {
+    //   steps {
+    //     script {
+    //       docker.withRegistry('', registryCredential) {
+    //       docker.image("${registry}:${env.BUILD_ID}").push('latest')
+    //       } 
+    //     }
+    //   }
+    // }
+    stage('Pub') {
       steps {
         script {
-          docker.withRegistry('', registryCredential) {
-          docker.image("${registry}:${env.BUILD_ID}").push('latest')
-          } 
+          docker.withRegistry( '', registryCredential) {
+          dockerImage.push()
         }
       }
     }
