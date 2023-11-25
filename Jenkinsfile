@@ -19,7 +19,7 @@ pipeline {
       }
       steps {
         script {
-          docker.image("${registry}:${env.BUILD_ID}").inside{c-> sh 'python app_test.py'}
+          docker.image("${registry}:${env.BUILD_ID}").inside{c-> sh 'python3 app_test.py'}
         }
 
       }
