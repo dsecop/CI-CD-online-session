@@ -19,6 +19,15 @@ pipeline {
 
       }
     }
+    stage('http-test') {
+      steps {
+        script {
+          docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9005:9000') {
+            c -> sh "sleep 5; curl -i http://192.168.1.15:9005/test_string"
+          }
+        }
+      }
+    }
 
   }
   environment {
