@@ -12,9 +12,9 @@ pipeline {
     stage('Publish') {
       steps {
         script {
-          docker.withRegistry('', 'dockerhub_id') {
+          docker.withRegistry('', 'dockerhub_id' --password-stdin) {
             docker.image("${registry}:${env.BUILD_ID}").push('latest')
-          }
+          } 
         }
       }
     }
