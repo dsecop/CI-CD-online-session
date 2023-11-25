@@ -12,7 +12,7 @@ pipeline {
     stage('Publish') {
       steps {
         script {
-          docker.withRegistry('https://registry-1.docker.io/v2/', 'dockerhub_id') {
+          docker.withRegistry('', 'dockerhub_id') {
           docker.image("${registry}:${env.BUILD_ID}").push('latest')
           } 
         }
