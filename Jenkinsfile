@@ -12,7 +12,7 @@ pipeline {
     stage('Publish') {
       steps {
         script {
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
+          docker.withRegistry('https://hub.docker.com/repository/docker/secop/my-app', 'dockerhub_id') {
             docker.image("${registry}:${env.BUILD_ID}").push('latest')
           } 
         }
