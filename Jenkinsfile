@@ -9,23 +9,14 @@ pipeline {
         }
       }
     }
-    // stage('Publish') {
-    //   steps {
-    //     script {
-    //       docker.withRegistry('', registryCredential) {
-    //       docker.image("${registry}:${env.BUILD_ID}").push('latest')
-    //       } 
-    //     }
-    //   }
-    // }
-    stage('Pub') {
+    stage('Publish') {
       steps {
         script {
-          docker.withRegistry( '', 'dockerhub_id') {
-          dockerImage.push()
+          docker.withRegistry('', 'dockerhub_id') {
+          docker.image("${registry}:${env.BUILD_ID}").push('latest')
+          } 
         }
       }
-    }
     }
     stage('Deploy') {
       steps {
