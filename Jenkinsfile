@@ -21,7 +21,7 @@ pipeline {
     stage('Pub') {
       steps {
         script {
-          docker.withRegistry( '', registryCredential) {
+          docker.withRegistry( '', 'dockerhub_id') {
           dockerImage.push()
         }
       }
